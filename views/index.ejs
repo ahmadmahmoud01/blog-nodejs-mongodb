@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<%- include('./partials/head.ejs') %>
+<style>
+    table {
+      font-family: arial, sans-serif;
+      border-collapse: collapse;
+      width: 100%;
+    }
+    
+    td, th {
+      border: 1px solid #dddddd;
+      text-align: left;
+      padding: 8px;
+    }
+    
+    tr:nth-child(even) {
+      background-color: #dddddd;
+    }
+    </style>
+
+<body>
+
+    <%- include('./partials/nav.ejs') %>
+
+    <div class="blogs content">
+        <h2>All Blogs</h2>
+    </div>
+
+    <% if(blogs.length > 0) { %>
+        <table>
+            <tr>
+              <th>#</th>
+              <th>title</th>
+              <th>snippet</th>
+              <th>body</th>
+            </tr>
+            <% var x = 1 %>
+            <% blogs.forEach(blog => { %>
+            
+                <tr>
+                    <td><%= x++ %></td>
+                    <td><h3 class="title"><a class="single" href="/blogs/<%= blog._id %>"><%= blog.title %></a></h3></td>
+                    <td><p class="snippet"><%= blog.snippet %></p></td>
+                    <td><p class="snippet"><%= blog.body %></p></td>
+                </tr>
+            
+            <% }) %>
+        </table>
+    <% } else { %>
+            <p>No blogs found....</p>
+        <% } %>
+
+    <%- include('./partials/footer.ejs') %>
+
+</body>
+
+</html>
